@@ -2,6 +2,7 @@
 	height: 60px;
 	width: 200px;
 	border: 1px solid;
+	font-size: 3em;
 }
 
 button {
@@ -13,4 +14,8 @@ input {
 	width: 200px;
 	height: 60px;
 	font-size: 3em;
+}
+
+#doublesize {
+	width: 124px;
 }

@@ -7,15 +7,34 @@
 
 </head>
 <body>
-	<input type="text" class="number_0">
+	<!--<input type="text" class="number_0">
 	<input type="text" class="number_1">
+	<br />-->
+	<input type="text" class="calc_screen">
 	<div class="result_display">
 
 	</div>
 	<br />
-	<button type="button" id="add_button">+</button>
-	<button type="button" id="sub_button">-</button>
-	<button type="button" id="multiply_button">X</button>
-	<button type="button" id="divide_button">/</button>
+	<button type="button" id="add_button" onclick="get_display('+')">+</button>
+	<button type="button" id="sub_button" onclick="get_display('-')">-</button>
+	<button type="button" id="multiply_button" onclick="get_display('*')">X</button>
+	<button type="button" id="divide_button" onclick="get_display('/')">/</button>
+	<button type="button" onclick="clear_function()">CLEAR</button>
+	<br />
+	<br />
+	<button type="button" onclick="button_click(1)">1</button>
+	<button type="button" onclick="button_click(2)">2</button>
+	<button type="button" onclick="button_click(3)">3</button>
+	<br />
+	<button type="button" onclick="button_click(4)">4</button>
+	<button type="button" onclick="button_click(5)">5</button>
+	<button type="button" onclick="button_click(6)">6</button>
+	<br />
+	<button type="button" onclick="button_click(7)">7</button>
+	<button type="button" onclick="button_click(8)">8</button>
+	<button type="button" onclick="button_click(9)">9</button>
+	<br />
+	<button type="button" onclick="button_click(0)">0</button>
+	<button type="button" id="doublesize" onclick="number_equal()">=</button>
 </body>
 </html>
