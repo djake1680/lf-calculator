@@ -14,8 +14,9 @@ function button_click(button_number){
 
 function clear_function(){
 	console.log('worked');
-	number_array = [];
+	number_array = ["",""];
 	$(".calc_screen").val("");
+	first_array_number = 0;
 }
 
 //put all numbers and operators in display
@@ -41,25 +42,25 @@ function number_sum(number1, operator, number2){
 //switch finds what operator you used, and then calculates based off of the operator
 	switch(operator) {
 		case "+":
-		$(".result_display").text(number1 + number2);
+		$(".calc_screen").val(number1 + number2);
 		break;
 
 
 		case "-":
-		$(".result_display").text(number1 - number2);
+		$(".calc_screen").val(number1 - number2);
 		break;
 
 		case "*":
-		$(".result_display").text(number1 * number2);
+		$(".calc_screen").val(number1 * number2);
 		break;
 
 		case "/":
 			if (number2 != 0) {
-				$(".result_display").text(number1 / number2);
+				$(".calc_screen").val(number1 / number2);
 				break;
 			}
 			else {
-				$(".result_display").text("Error");
+				$(".calc_screen").val("Error");
 				break;
 			}
 
