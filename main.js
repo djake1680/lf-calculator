@@ -36,7 +36,24 @@ $("#clear_screen").click(function(){
 	$(".calc_screen").val("");
 	first_array_number = 0;
 });
+    // clears last number entered
+    $("#clear_last").click(function(){
+        console.log("clear_last worked");
+        if (number_array[1]){
+            console.log("second index of array");
+            number_array[1] = ("");
+            current_input = number_array[0] + clicked_operator;
+            $(".calc_screen").val(current_input);
+        }
+        else {
+            console.log("first index of array");
+            number_array = ["",""];
+            $(".calc_screen").val("");
+            first_array_number = 0;
+        }
+    });
 //put all numbers and operators in display
+    //DWP THIS ONE
 	$(".operator_click").click(function(){
 		clicked_operator = $(this).text(); //finds which + - * / you clicked
 		console.log(clicked_operator);
@@ -63,34 +80,34 @@ $("#clear_screen").click(function(){
  * @param operator: clicked_operator
  * @param number2: number_array[1]
  */
-function number_math(number1, operator, number2){
-	number1 = parseFloat(number1);
-	number2 = parseFloat(number2);
+function number_math(number1, operator, number2){ //pulls in number_array[0], [1], and the operator when called
+	number1 = parseFloat(number1); //turns number1 into a float
+	number2 = parseFloat(number2); //turns number2 into a float
 	console.log(number1, operator, number2);
 
 //switch finds what operator you used, and then calculates based off of the operator
-	switch(operator) {
-		case "+":
-		$(".calc_screen").val(number1 + number2);
-		break;
+	switch(operator) { //based on the operator string it will do calculation to number1 and number2
+		case "+": //if operator string is a plus
+		$(".calc_screen").val(number1 + number2); //send to the screen the value of both numbers added together
+		break; //stop looking for what operator was used
 
 
-		case "-":
-		$(".calc_screen").val(number1 - number2);
-		break;
+		case "-": //if operator string is a minus
+		$(".calc_screen").val(number1 - number2); //send to the screen the value of number1 minus number2
+		break; //stop looking for what operator was used
 
-		case "*":
-		$(".calc_screen").val(number1 * number2);
-		break;
+		case "*": //if operator string is a *
+		$(".calc_screen").val(number1 * number2); //send to the screen the value of number1 times number2
+		break; //stop looking for what operator was used
 
-		case "/":
-			if (number2 != 0) {
-				$(".calc_screen").val(number1 / number2);
-				break;
+		case "/": //if operator string is a /
+			if (number2 != 0) { //if second number is not 0
+				$(".calc_screen").val(number1 / number2); //send to the screen the value of number1 divided by number2
+				break; //stop the function
 			}
-			else {
-				$(".calc_screen").val("Error");
-				break;
+			else { //if second number IS 0
+				$(".calc_screen").val("Error"); //send to the screen an error message
+				break; //stop the function
 			}
 
 	}
