@@ -21,9 +21,19 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
 
 $("#pos_to_neg").click(function(){
    console.log("positive to negative");
+    if(number_array[1]) {
+        console.log("second");
+        var neg_pos = parseFloat(number_array[1]);
+        neg_pos = neg_pos * -1;
+        console.log(neg_pos);
+        number_array[1] = neg_pos;
+    }
+    else {
+        console.log("first");
+    }
+
 
 });
-
 
 //when hit =, passes the array items and operator to number_sum function
 $(".equals").click(function(){
@@ -54,18 +64,17 @@ $("#clear_screen").click(function(){
     });
 //put all numbers and operators in display
     //DWP THIS ONE
-	$(".operator_click").click(function(){
-		clicked_operator = $(this).text(); //finds which + - * / you clicked
+	$(".operator_click").click(function(){ //begins when you click on an operator (any operator)
+		clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
 		console.log(clicked_operator);
 		var first_number = $(".calc_screen").val(); //gets the first number you entered from the screen
-		$(".calc_screen").val(first_number + clicked_operator);
+		$(".calc_screen").val(first_number + clicked_operator); //send new string including the operator to the screen
 		first_array_number = 1; //changes which array index you're going to save to
 
 
         //if the array[1] is not empty, send to number_sum to calculate
-            if (number_array[1] != ""){
-                number_math(number_array[0], clicked_operator, number_array[1]);
-                console.log("1");
+            if (number_array[1] != ""){ //if array position [1] is not empty
+                number_math(number_array[0], clicked_operator, number_array[1]); //send array[0], [1], and the operator to the math function
             }
 	});
 
