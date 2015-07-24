@@ -5,13 +5,14 @@ var clear_screen;
 var my_operator;
 var current_input;
 var clicked_operator;
+var button_no;
 
 
 $(document).ready(function(){ //
 	//Enters number of the button you clicked on, and keeps adding to it with new numbers
 $(".button_clk").click(function(){ //button_clk is the number you clicked
 	console.log($(this).text());
-	var button_no = $(this).text(); //assigns button_no to the text field in the button
+	button_no = $(this).text(); //assigns button_no to the text field in the button
 	var new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
 	current_input = new_number + button_no;
 	$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
@@ -35,6 +36,23 @@ $("#clear_screen").click(function(){
 	number_array = ["",""];
 	$(".calc_screen").val("");
 	first_array_number = 0;
+});
+
+// clears last number entered
+$("#clear_last").click(function(){
+    console.log("clear_last worked");
+    if (number_array[1]){
+        console.log("second index of array");
+        number_array[1] = ("");
+        current_input = number_array[0] + clicked_operator;
+        $(".calc_screen").val(current_input);
+    }
+    else {
+        console.log("first index of array");
+        number_array = ["",""];
+        $(".calc_screen").val("");
+        first_array_number = 0;
+    }
 });
 //put all numbers and operators in display
 	$(".operator_click").click(function(){
