@@ -5,14 +5,12 @@ var clear_screen;
 var my_operator;
 var current_input;
 var clicked_operator;
-<<<<<<< HEAD
 var button_no;
-=======
 var second_negative;
 var newest_negative;
 var new_number;
 var first_number;
->>>>>>> C5_djake1680_tflew
+var math_total;
 
 
 $(document).ready(function(){
@@ -20,13 +18,10 @@ $(document).ready(function(){
 	//Enters number of the button you clicked on, and keeps adding to it with new numbers
 $(".button_clk").click(function(){ //button_clk is the number you clicked
 	console.log($(this).text());
-<<<<<<< HEAD
 	button_no = $(this).text(); //assigns button_no to the text field in the button
 	var new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
-=======
 	var button_no = $(this).text(); //assigns button_no to the text field in the button
 	new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
->>>>>>> C5_djake1680_tflew
 	current_input = new_number + button_no;
 	$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
 	number_array[first_array_number]+=button_no;  //every time you hit a number button it adds to the array you're on
@@ -83,6 +78,8 @@ $("#pos_to_neg").click(function(){
 //when hit =, passes the array items and operator to number_sum function
 $(".equals").click(function(){
     number_math(number_array[0], clicked_operator, number_array[1]);
+    $(".calc_screen").val(math_total);
+    number_array = [math_total, ""];
 });
 
 //to clear the everything when "A/C" is clicked
@@ -91,7 +88,6 @@ $("#clear_screen").click(function(){
 	$(".calc_screen").val("");
 	first_array_number = 0;
 });
-<<<<<<< HEAD
 
 // clears last number entered
 $("#clear_last").click(function(){
@@ -109,7 +105,6 @@ $("#clear_last").click(function(){
         first_array_number = 0;
     }
 });
-=======
     // clears last number entered
     $("#clear_last").click(function(){
         console.log("clear_last worked");
@@ -126,12 +121,13 @@ $("#clear_last").click(function(){
             first_array_number = 0;
         }
     });
->>>>>>> C5_djake1680_tflew
 //put all numbers and operators in display
     //DWP THIS ONE
 	$(".operator_click").click(function(){ //begins when you click on an operator (any operator)
         if ((number_array[0] != "") && (number_array[1] != "")){
             number_math(number_array[0], clicked_operator, number_array[1]);
+            number_array = [math_total, ""];
+            $(".calc_screen").val(math_total + clicked_operator);
         }
         else
         {
@@ -163,21 +159,21 @@ function number_math(number1, operator, number2){ //pulls in number_array[0], [1
 //switch finds what operator you used, and then calculates based off of the operator
 	switch(operator) { //based on the operator string it will do calculation to number1 and number2
 		case "+": //if operator string is a plus
-		$(".calc_screen").val(number1 + number2); //send to the screen the value of both numbers added together
+        math_total = number1 + number2;
 		break; //stop looking for what operator was used
 
 
 		case "-": //if operator string is a minus
-		$(".calc_screen").val(number1 - number2); //send to the screen the value of number1 minus number2
+        math_total = number1 - number2;
 		break; //stop looking for what operator was used
 
 		case "*": //if operator string is a *
-		$(".calc_screen").val(number1 * number2); //send to the screen the value of number1 times number2
+		math_total = number1 * number2;
 		break; //stop looking for what operator was used
 
 		case "/": //if operator string is a /
 			if (number2 != 0) { //if second number is not 0
-				$(".calc_screen").val(number1 / number2); //send to the screen the value of number1 divided by number2
+				math_total = number1 / number2; //send to the screen the value of number1 divided by number2
 				break; //stop the function
 			}
 			else { //if second number IS 0
