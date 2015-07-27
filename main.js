@@ -1,13 +1,8 @@
-var operator;
 var first_array_number = 0;
 var number_array = ["",""];
-var clear_screen;
-var my_operator;
 var current_input;
 var clicked_operator;
 var button_no;
-var second_negative;
-var newest_negative;
 var new_number;
 var first_number;
 var math_total;
@@ -79,7 +74,7 @@ $(".equals").click(function() {
         equals_math = 1;
         console.log("equals_math = " + equals_math);
     }
-    else if (equals_math == 1){
+    else if (equals_math == 1){ // equals_math makes sure a calculation has been done, ensuring there's an operator
         number_array[1] = number_array[0];
         number_math(number_array[0], clicked_operator, number_array[1]);
         number_array = [math_total, ""];
