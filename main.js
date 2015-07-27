@@ -4,7 +4,6 @@ var current_input;
 var clicked_operator;
 var button_no;
 var new_number;
-var first_number;
 var math_total;
 var equals_math = 0;
 
@@ -13,13 +12,13 @@ $(document).ready(function(){
     first_array_number = 0;
 	//Enters number of the button you clicked on, and keeps adding to it with new numbers
 $(".button_clk").click(function(){ //button_clk is the number you clicked
-	console.log($(this).text());
+	//console.log($(this).text());
 	button_no = $(this).text(); //assigns button_no to the text field in the button
 	new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
 	current_input = new_number + button_no;
 	$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
 	number_array[first_array_number]+=button_no;  //every time you hit a number button it adds to the array you're on
-    console.log(number_array[first_array_number]);
+    //console.log(number_array[first_array_number]);
 });
 
     //turns number negative or positive based on +/-.  screen doesn't work on 2nd number but functions properly
@@ -106,27 +105,25 @@ $("#clear_last").click(function(){
 //put all numbers and operators in display
     //DWP THIS ONE
 	$(".operator_click").click(function(){ //begins when you click on an operator (any operator)
-        if ((number_array[0] != "") && (number_array[1] != "")){
-            number_math(number_array[0], clicked_operator, number_array[1]);
-            number_array = [math_total, ""];
-            $(".calc_screen").val(math_total + clicked_operator);
-        }
-        // code below is so if theres no first number, it doesn't output the operator to the screen
-        else if (number_array[0] == ""){
-            $(".calc_screen").val("");
-        }
 
-        else
-        {
-            clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
-            if (clicked_operator == "xY"){
-                clicked_operator = "e";
-            }
-            console.log(clicked_operator);
-            first_number = number_array[0]; //instead of getting first number from screen
-            $(".calc_screen").val(first_number + clicked_operator); //send new string including the operator to the screen
-            first_array_number = 1; //changes which array index you're going to save to
-        }
+        clicked_operator = $(this).text();
+        first_array_number += 1; //changes which array index you're going to save to
+        number_array[first_array_number] = clicked_operator;
+        first_array_number += 1;
+        //$(".calc_screen").val(new_number + clicked_operator);
+      //  first_array_number += 1; //changes which array index you're going to save to
+
+        //else if (number_array[0] == ""){
+          //  $(".calc_screen").val("");
+        //}
+
+        //else
+        //{
+          //  clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
+          //  if (clicked_operator == "xY"){
+          //      clicked_operator = "e";
+          //  }
+
 	});
 
 
@@ -178,7 +175,8 @@ function number_math(number1, operator, number2){ //pulls in number_array[0], [1
 
 	}
 
-}/*******
+}
+/*******
  *  operand_array = ["", ""]
  *  index_pointer = 0
  *  input_array["1", "+", "97", "/", "8", * "4"]
