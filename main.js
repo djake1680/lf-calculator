@@ -98,19 +98,7 @@ $("#clear_last").click(function(){
         first_array_number = 0;
     }
 });
-    // clears last number entered
-    $("#clear_last").click(function(){
-        if (number_array[1]){
-            number_array[1] = ("");
-            current_input = number_array[0] + clicked_operator;
-            $(".calc_screen").val(current_input);
-        }
-        else {
-            number_array = ["",""];
-            $(".calc_screen").val("");
-            first_array_number = 0;
-        }
-    });
+
 //put all numbers and operators in display
     //DWP THIS ONE
 	$(".operator_click").click(function(){ //begins when you click on an operator (any operator)
@@ -119,6 +107,7 @@ $("#clear_last").click(function(){
             number_array = [math_total, ""];
             $(".calc_screen").val(math_total + clicked_operator);
         }
+        // code below is so if theres no first number, it doesn't output the operator to the screen
         else if (number_array[0] == ""){
             $(".calc_screen").val("");
         }
