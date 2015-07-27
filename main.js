@@ -19,8 +19,6 @@ $(document).ready(function(){
 $(".button_clk").click(function(){ //button_clk is the number you clicked
 	console.log($(this).text());
 	button_no = $(this).text(); //assigns button_no to the text field in the button
-	var new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
-	var button_no = $(this).text(); //assigns button_no to the text field in the button
 	new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
 	current_input = new_number + button_no;
 	$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
@@ -32,15 +30,13 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
 $("#pos_to_neg").click(function(){
    console.log("positive to negative");
 
-    if (first_array_number == 0) {
+    if (first_array_number == 0) { //if it's still on the first array index
 
         negative_pos = parseFloat(number_array[0]);
         if ((negative_pos >= 0) || (number_array[0] == "")) {
             console.log(negative_pos);
-            console.log("first")
+            console.log("first");
             var neg_pos = "-" + number_array[0];
-            //neg_pos = neg_pos * -1;
-            console.log(neg_pos);
             number_array[0] = neg_pos;
             $(".calc_screen").val(neg_pos);
         }
@@ -48,7 +44,6 @@ $("#pos_to_neg").click(function(){
             console.log("woah");
             var pos_neg = number_array[0];
             var positive_neg = pos_neg.slice(1);
-            console.log(positive_neg);
             number_array[0] = positive_neg;
             $(".calc_screen").val(positive_neg);
         }
@@ -60,15 +55,14 @@ $("#pos_to_neg").click(function(){
             console.log("second");
             var neg_pos = "-" + number_array[1];
             number_array[1] = neg_pos;
-            second_negative = $(".calc_screen").val();
-            $(".calc_screen").val(second_negative + neg_pos);
+            $(".calc_screen").val(number_array[0] + clicked_operator + neg_pos);
         }
         else {
             var neg_to_positive = number_array[1];
             var negative_2_positive = neg_to_positive.slice(1);
             number_array[1] = negative_2_positive;
             console.log(negative_2_positive);
-            $(".calc_screen").val(number_array[0]);
+            $(".calc_screen").val(number_array[0] + clicked_operator + number_array[1]);
 
         }
     }
@@ -76,13 +70,15 @@ $("#pos_to_neg").click(function(){
 });
 
 //when hit =, passes the array items and operator to number_sum function
-$(".equals").click(function(){
+$(".equals").click(function() {
+    if (number_array[0] != "" && number_array[1] != "") { //if there's no number in both indexes, nothing happens
     number_math(number_array[0], clicked_operator, number_array[1]);
     $(".calc_screen").val(math_total);
     number_array = [math_total, ""];
+}
 });
 
-//to clear the everything when "A/C" is clicked
+//to clear everything when "A/C" is clicked
 $("#clear_screen").click(function(){
 	number_array = ["",""];
 	$(".calc_screen").val("");
@@ -91,15 +87,12 @@ $("#clear_screen").click(function(){
 
 // clears last number entered
 $("#clear_last").click(function(){
-    console.log("clear_last worked");
     if (number_array[1]){
-        console.log("second index of array");
         number_array[1] = ("");
         current_input = number_array[0] + clicked_operator;
         $(".calc_screen").val(current_input);
     }
     else {
-        console.log("first index of array");
         number_array = ["",""];
         $(".calc_screen").val("");
         first_array_number = 0;
@@ -107,15 +100,12 @@ $("#clear_last").click(function(){
 });
     // clears last number entered
     $("#clear_last").click(function(){
-        console.log("clear_last worked");
         if (number_array[1]){
-            console.log("second index of array");
             number_array[1] = ("");
             current_input = number_array[0] + clicked_operator;
             $(".calc_screen").val(current_input);
         }
         else {
-            console.log("first index of array");
             number_array = ["",""];
             $(".calc_screen").val("");
             first_array_number = 0;
@@ -133,7 +123,6 @@ $("#clear_last").click(function(){
         {
             clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
             console.log(clicked_operator);
-            //var first_number = $(".calc_screen").val(); //gets the first number you entered from the screen
             first_number = number_array[0]; //instead of getting first number from screen
             $(".calc_screen").val(first_number + clicked_operator); //send new string including the operator to the screen
             first_array_number = 1; //changes which array index you're going to save to
@@ -154,7 +143,6 @@ $("#clear_last").click(function(){
 function number_math(number1, operator, number2){ //pulls in number_array[0], [1], and the operator when called
 	number1 = parseFloat(number1); //turns number1 into a float
 	number2 = parseFloat(number2); //turns number2 into a float
-	console.log(number1, operator, number2);
 
 //switch finds what operator you used, and then calculates based off of the operator
 	switch(operator) { //based on the operator string it will do calculation to number1 and number2
