@@ -49,7 +49,7 @@ $("#pos_to_neg").click(function(){
         }
     }
 
-    else {
+    else { //if it gets here it's on the second index of the array
         negative_pos = parseFloat(number_array[1]);
         if ((negative_pos >= 0) || (number_array[1] == "")) {
             console.log("second");
@@ -119,15 +119,23 @@ $("#clear_last").click(function(){
             number_array = [math_total, ""];
             $(".calc_screen").val(math_total + clicked_operator);
         }
+        else if (number_array[0] == ""){
+            $(".calc_screen").val("");
+        }
+
         else
         {
             clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
+            if (clicked_operator == "xY"){
+                clicked_operator = "e";
+            }
             console.log(clicked_operator);
             first_number = number_array[0]; //instead of getting first number from screen
             $(".calc_screen").val(first_number + clicked_operator); //send new string including the operator to the screen
             first_array_number = 1; //changes which array index you're going to save to
         }
 	});
+
 
 });
 
@@ -168,6 +176,12 @@ function number_math(number1, operator, number2){ //pulls in number_array[0], [1
 				$(".calc_screen").val("Error"); //send to the screen an error message
 				break; //stop the function
 			}
+
+        case "e":
+            console.log("exponent finds");
+            math_total = Math.pow(number1, number2);
+            break;
+
 
 	}
 
