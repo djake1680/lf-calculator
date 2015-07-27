@@ -19,3 +19,15 @@ input {
 #doublesize {
 	width: 60px;
 }
+
+.calc_screen {
+    display: inline-block;
+    width: 220px;
+    margin-left: 12px;
+    margin-bottom: 15px;
+}
+
+.calc_body {
+    width: 260px;
+    margin: 0 auto;
+}

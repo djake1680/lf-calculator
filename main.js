@@ -11,6 +11,7 @@ var newest_negative;
 var new_number;
 var first_number;
 var math_total;
+var equals_math = 0;
 
 
 $(document).ready(function(){
@@ -72,10 +73,18 @@ $("#pos_to_neg").click(function(){
 //when hit =, passes the array items and operator to number_sum function
 $(".equals").click(function() {
     if (number_array[0] != "" && number_array[1] != "") { //if there's no number in both indexes, nothing happens
-    number_math(number_array[0], clicked_operator, number_array[1]);
-    $(".calc_screen").val(math_total);
-    number_array = [math_total, ""];
-}
+        number_math(number_array[0], clicked_operator, number_array[1]);
+        $(".calc_screen").val(math_total);
+        number_array = [math_total, ""];
+        equals_math = 1;
+        console.log("equals_math = " + equals_math);
+    }
+    else if (equals_math == 1){
+        number_array[1] = number_array[0];
+        number_math(number_array[0], clicked_operator, number_array[1]);
+        number_array = [math_total, ""];
+        $(".calc_screen").val(math_total);
+    }
 });
 
 //to clear everything when "A/C" is clicked
@@ -174,4 +183,15 @@ function number_math(number1, operator, number2){ //pulls in number_array[0], [1
 
 	}
 
-}
+}/*******
+ *  operand_array = ["", ""]
+ *  index_pointer = 0
+ *  input_array["1", "+", "97", "/", "8", * "4"]
+ *  op_array = ["+", "-", "*", "/"]
+ *
+ *  for (var i = 0; i < input_array.length; i++)
+ *      if (! isNaN(input_array[i])) //is it a number?
+ *      if (op_array.indexOf(input_array[i] !== -1))
+ *
+ *
+ */
