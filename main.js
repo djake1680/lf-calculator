@@ -1,11 +1,12 @@
 var first_array_number = 0;
-var number_array = ["",""];
+var number_array = [];
 var current_input;
 var clicked_operator;
 var button_no;
 var new_number;
 var math_total;
 var equals_math = 0;
+var new_operator = 0;
 
 
 $(document).ready(function(){
@@ -14,12 +15,40 @@ $(document).ready(function(){
 $(".button_clk").click(function(){ //button_clk is the number you clicked
 	//console.log($(this).text());
 	button_no = $(this).text(); //assigns button_no to the text field in the button
-	new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
-	current_input = new_number + button_no;
-	$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
+	//new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
+	//current_input = new_number + button_no;
+	//$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
+    number_array.push("");
 	number_array[first_array_number]+=button_no;  //every time you hit a number button it adds to the array you're on
+    console.log ('button_no',button_no,'number array is', number_array[first_array_number]);
+
+    new_operator = 1;
     //console.log(number_array[first_array_number]);
 });
+
+    $(".operator_click").click(function(){ //begins when you click on an operator (any operator)
+        if (new_operator == 1) {
+            clicked_operator = $(this).text();
+            first_array_number += 1; //changes which array index you're going to save to
+            number_array[first_array_number] = clicked_operator;
+            first_array_number += 1;
+            new_operator = 0;
+        }
+        //$(".calc_screen").val(new_number + clicked_operator);
+        //  first_array_number += 1; //changes which array index you're going to save to
+
+        //else if (number_array[0] == ""){
+        //  $(".calc_screen").val("");
+        //}
+
+        //else
+        //{
+        //  clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
+        //  if (clicked_operator == "xY"){
+        //      clicked_operator = "e";
+        //  }
+
+    });
 
     //turns number negative or positive based on +/-.  screen doesn't work on 2nd number but functions properly
 $("#pos_to_neg").click(function(){
@@ -101,30 +130,6 @@ $("#clear_last").click(function(){
         first_array_number = 0;
     }
 });
-
-//put all numbers and operators in display
-    //DWP THIS ONE
-	$(".operator_click").click(function(){ //begins when you click on an operator (any operator)
-
-        clicked_operator = $(this).text();
-        first_array_number += 1; //changes which array index you're going to save to
-        number_array[first_array_number] = clicked_operator;
-        first_array_number += 1;
-        //$(".calc_screen").val(new_number + clicked_operator);
-      //  first_array_number += 1; //changes which array index you're going to save to
-
-        //else if (number_array[0] == ""){
-          //  $(".calc_screen").val("");
-        //}
-
-        //else
-        //{
-          //  clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
-          //  if (clicked_operator == "xY"){
-          //      clicked_operator = "e";
-          //  }
-
-	});
 
 
 });
