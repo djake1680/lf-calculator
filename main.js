@@ -29,6 +29,10 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
     $(".operator_click").click(function(){ //begins when you click on an operator (any operator)
         if (new_operator == 1) {
             clicked_operator = $(this).text();
+
+            if (clicked_operator == "xY"){
+                clicked_operator = "e";
+            }
             first_array_number += 1; //changes which array index you're going to save to
             number_array[first_array_number] = clicked_operator
             new_number = $(".calc_screen").val();
@@ -37,19 +41,6 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
             first_array_number += 1;
             new_operator = 0;
         }
-        //$(".calc_screen").val(new_number + clicked_operator);
-        //  first_array_number += 1; //changes which array index you're going to save to
-
-        //else if (number_array[0] == ""){
-        //  $(".calc_screen").val("");
-        //}
-
-        //else
-        //{
-        //  clicked_operator = $(this).text(); //finds which operator (+ - * /) you clicked
-        //  if (clicked_operator == "xY"){
-        //      clicked_operator = "e";
-        //  }
 
     });
 
@@ -115,23 +106,14 @@ $(".equals").click(function() {
 
 //to clear everything when "A/C" is clicked
 $("#clear_screen").click(function(){
-	number_array = ["",""];
+	number_array = [];
 	$(".calc_screen").val("");
 	first_array_number = 0;
 });
 
 // clears last number entered
 $("#clear_last").click(function(){
-    if (number_array[1]){
-        number_array[1] = ("");
-        current_input = number_array[0] + clicked_operator;
-        $(".calc_screen").val(current_input);
-    }
-    else {
-        number_array = ["",""];
-        $(".calc_screen").val("");
-        first_array_number = 0;
-    }
+   
 });
 
 
