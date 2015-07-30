@@ -7,6 +7,7 @@ var new_number;
 var math_total;
 var equals_math = 0;
 var new_operator = 0;
+var decimal;
 
 
 $(document).ready(function(){
@@ -15,6 +16,20 @@ $(document).ready(function(){
 $(".button_clk").click(function(){ //button_clk is the number you clicked
 	//console.log($(this).text());
 	button_no = $(this).text(); //assigns button_no to the text field in the button
+
+    //this is to make sure decimal is only used once
+    //right now it lets only one decimal for the number it's placed, but can't put decimals in later numbers
+    if (button_no == ".") {
+        console.log('decimal');
+        if (decimal != 1) {
+            button_no = ".";
+        }
+        else {
+            button_no = "";
+        }
+        decimal = 1;
+
+    }
 	new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
 	current_input = new_number + button_no;
 	$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
@@ -33,6 +48,8 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
             if (clicked_operator == "xY"){
                 clicked_operator = "e";
             }
+
+
             first_array_number += 1; //changes which array index you're going to save to
             number_array[first_array_number] = clicked_operator
             new_number = $(".calc_screen").val();
@@ -113,7 +130,7 @@ $("#clear_screen").click(function(){
 
 // clears last number entered
 $("#clear_last").click(function(){
-   
+
 });
 
 
