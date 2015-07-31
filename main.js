@@ -1,5 +1,5 @@
 var first_array_number = 0;
-var number_array = [];
+var number_array = [""];
 var current_input;
 var clicked_operator;
 var button_no;
@@ -7,36 +7,39 @@ var new_number;
 var math_total;
 var equals_math = 0;
 var new_operator = 0;
-var decimal;
+var decimal = 0;
 
 
 $(document).ready(function(){
     first_array_number = 0;
 	//Enters number of the button you clicked on, and keeps adding to it with new numbers
 $(".button_clk").click(function(){ //button_clk is the number you clicked
-	//console.log($(this).text());
 	button_no = $(this).text(); //assigns button_no to the text field in the button
 
-    //this is to make sure decimal is only used once
-    //right now it lets only one decimal for the number it's placed, but can't put decimals in later numbers
+    //this is to make sure decimal is only used once-works
     if (button_no == ".") {
         console.log('decimal');
-        if (decimal != 1) {
-            button_no = ".";
+        decimal += 1;
+        if (decimal == 0 || decimal == 1){
+            new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
+            current_input = new_number + button_no;
+            $(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
+            //number_array.push("");
+            number_array[first_array_number]+=button_no;
+
         }
         else {
-            button_no = "";
+            console.log("too many decimals");
         }
-        decimal = 1;
-
     }
-	new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
-	current_input = new_number + button_no;
-	$(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
-    number_array.push("");
-	number_array[first_array_number]+=button_no;  //every time you hit a number button it adds to the array you're on
-    console.log ('button_no',button_no,'number array is', number_array[first_array_number]);
 
+    else if (button_no != ".") {
+        new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
+        current_input = new_number + button_no;
+        $(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
+        //number_array.push("");
+        number_array[first_array_number] += button_no;  //every time you hit a number button it adds to the array you're on
+    }
     new_operator = 1;
     //console.log(number_array[first_array_number]);
 });
@@ -56,7 +59,9 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
             current_input = new_number + clicked_operator;
             $(".calc_screen").val(current_input);
             first_array_number += 1;
+            number_array.push("");
             new_operator = 0;
+            decimal = 0;
         }
 
     });
