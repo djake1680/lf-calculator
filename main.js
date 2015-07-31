@@ -1,5 +1,5 @@
-var array_number = 0;
-var number_array = [""];
+var array_number = 0; //index number of number_array
+var number_array = [""]; //array that holds all values and operators
 var current_input;
 var clicked_operator;
 var button_no;
@@ -148,7 +148,13 @@ $("#clear_screen").click(function(){
 
 // clears last number entered
 $("#clear_last").click(function(){
+    num_output = "";
+    number_array[array_number] = "";
 
+    for (var i = 0; i < number_array.length; i++) {
+        num_output = num_output + number_array[i];
+    }
+    $(".calc_screen").val(num_output);
 });
 
 
