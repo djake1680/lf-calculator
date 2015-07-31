@@ -24,7 +24,6 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
             new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
             current_input = new_number + button_no;
             $(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
-            //number_array.push("");
             number_array[first_array_number]+=button_no;
 
         }
@@ -37,11 +36,9 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
         new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
         current_input = new_number + button_no;
         $(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
-        //number_array.push("");
         number_array[first_array_number] += button_no;  //every time you hit a number button it adds to the array you're on
     }
     new_operator = 1;
-    //console.log(number_array[first_array_number]);
 });
 
     $(".operator_click").click(function(){ //begins when you click on an operator (any operator)
@@ -128,7 +125,7 @@ $(".equals").click(function() {
 
 //to clear everything when "A/C" is clicked
 $("#clear_screen").click(function(){
-	number_array = [];
+	number_array = [""];
 	$(".calc_screen").val("");
 	first_array_number = 0;
 });
