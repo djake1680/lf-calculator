@@ -1,4 +1,4 @@
-var first_array_number = 0;
+var array_number = 0;
 var number_array = [""];
 var current_input;
 var clicked_operator;
@@ -8,10 +8,11 @@ var math_total;
 var equals_math = 0;
 var new_operator = 0;
 var decimal = 0;
+var num_output = "";
 
 
 $(document).ready(function(){
-    first_array_number = 0;
+    array_number = 0;
 	//Enters number of the button you clicked on, and keeps adding to it with new numbers
 $(".button_clk").click(function(){ //button_clk is the number you clicked
 	button_no = $(this).text(); //assigns button_no to the text field in the button
@@ -24,7 +25,7 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
             new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
             current_input = new_number + button_no;
             $(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
-            number_array[first_array_number]+=button_no;
+            number_array[array_number]+=button_no;
 
         }
         else {
@@ -36,7 +37,7 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
         new_number = $(".calc_screen").val();  //assigns new_number to what's showing in the calc_screen
         current_input = new_number + button_no;
         $(".calc_screen").val(current_input);  //returns current_input to calc_screen input field
-        number_array[first_array_number] += button_no;  //every time you hit a number button it adds to the array you're on
+        number_array[array_number] += button_no;  //every time you hit a number button it adds to the array you're on
     }
     new_operator = 1;
 });
@@ -50,12 +51,12 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
             }
 
 
-            first_array_number += 1; //changes which array index you're going to save to
-            number_array[first_array_number] = clicked_operator
+            array_number += 1; //changes which array index you're going to save to
+            number_array[array_number] = clicked_operator
             new_number = $(".calc_screen").val();
             current_input = new_number + clicked_operator;
             $(".calc_screen").val(current_input);
-            first_array_number += 1;
+            array_number += 1;
             number_array.push("");
             new_operator = 0;
             decimal = 0;
@@ -63,11 +64,10 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
 
     });
 
-    //turns number negative or positive based on +/-.  screen doesn't work on 2nd number but functions properly
+    //turns number negative or positive based on +/-.
 $("#pos_to_neg").click(function(){
-   console.log("positive to negative");
 
-    if (first_array_number == 0) { //if it's still on the first array index
+    if (array_number == 0) { //if it's still on the first array index
 
         negative_pos = parseFloat(number_array[0]);
         if ((negative_pos >= 0) || (number_array[0] == "")) {
@@ -87,19 +87,33 @@ $("#pos_to_neg").click(function(){
     }
 
     else { //if it gets here it's on the second index of the array
-        negative_pos = parseFloat(number_array[1]);
-        if ((negative_pos >= 0) || (number_array[1] == "")) {
-            console.log("second");
-            var neg_pos = "-" + number_array[1];
-            number_array[1] = neg_pos;
-            $(".calc_screen").val(number_array[0] + clicked_operator + neg_pos);
+        negative_pos = parseFloat(number_array[array_number]);
+        console.log(negative_pos);
+        if ((negative_pos >= 0) || (number_array[array_number] == "")) {
+            num_output = "";
+            console.log("number is positive to negative");
+            var neg_pos = "-" + number_array[array_number];
+            number_array[array_number] = neg_pos;
+            console.log(number_array[array_number]);
+
+            for (var i = 0; i < number_array.length; i++) {
+                num_output = num_output + number_array[i];
+            }
+            $(".calc_screen").val(num_output);
         }
-        else {
-            var neg_to_positive = number_array[1];
+
+       else {
+            num_output = "";
+            console.log("Number is positive and needs to be negative");
+            var neg_to_positive = number_array[array_number];
             var negative_2_positive = neg_to_positive.slice(1);
-            number_array[1] = negative_2_positive;
+            number_array[array_number] = negative_2_positive;
             console.log(negative_2_positive);
-            $(".calc_screen").val(number_array[0] + clicked_operator + number_array[1]);
+
+            for (var i = 0; i < number_array.length; i++) {
+                num_output = num_output + number_array[i];
+            }
+            $(".calc_screen").val(num_output);
 
         }
     }
@@ -108,7 +122,8 @@ $("#pos_to_neg").click(function(){
 
 //when hit =, passes the array items and operator to number_sum function
 $(".equals").click(function() {
-    if (number_array[0] != "" && number_array[1] != "") { //if there's no number in both indexes, nothing happens
+    console.log(number_array);
+    /*if (number_array[0] != "" && number_array[1] != "") { //if there's no number in both indexes, nothing happens
         number_math(number_array[0], clicked_operator, number_array[1]);
         $(".calc_screen").val(math_total);
         number_array = [math_total, ""];
@@ -120,14 +135,15 @@ $(".equals").click(function() {
         number_math(number_array[0], clicked_operator, number_array[1]);
         number_array = [math_total, ""];
         $(".calc_screen").val(math_total);
-    }
+    }*/
 });
 
 //to clear everything when "A/C" is clicked
 $("#clear_screen").click(function(){
 	number_array = [""];
 	$(".calc_screen").val("");
-	first_array_number = 0;
+	array_number = 0;
+    num_output = "";
 });
 
 // clears last number entered
