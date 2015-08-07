@@ -123,7 +123,20 @@ $("#pos_to_neg").click(function(){
 //when hit =, passes the array items and operator to number_sum function
 $(".equals").click(function() {
     console.log(number_array);
-    /*if (number_array[0] != "" && number_array[1] != "") { //if there's no number in both indexes, nothing happens
+    if (number_array[0] != "" && number_array[2] != "") {
+        for (var i = 0; i < number_array.length; i++){
+            //console.log(number_array[i]);
+            var num1 = number_array[0];
+            var operator_picked = number_array[1];
+            var num2 = number_array[2];
+            number_math(num1, operator_picked, num2);
+            number_array.splice(1,2);
+            number_array[0] = math_total;
+
+        }
+        $(".calc_screen").val(math_total);
+    }
+    /*if (number_array[0] != "" && number_array[1] != "") { //this means there's a number in the first 2 index spots
         number_math(number_array[0], clicked_operator, number_array[1]);
         $(".calc_screen").val(math_total);
         number_array = [math_total, ""];
@@ -170,6 +183,7 @@ $("#clear_last").click(function(){
  * @param number2: number_array[1]
  */
 function number_math(number1, operator, number2){ //pulls in number_array[0], [1], and the operator when called
+    console.log(number1, operator, number2);
 	number1 = parseFloat(number1); //turns number1 into a float
 	number2 = parseFloat(number2); //turns number2 into a float
 
