@@ -124,7 +124,8 @@ $("#pos_to_neg").click(function(){
 $(".equals").click(function() {
     console.log(number_array);
     if (number_array[0] != "" && number_array[2] != "") {
-        for (var i = 0; i <= number_array.length; i++){
+        var times_to_run = number_array.length;
+        for (var i = 0; i <= times_to_run; i++){
             //console.log(number_array[i]);
             var num1 = number_array[0];
             var operator_picked = number_array[1];
