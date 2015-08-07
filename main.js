@@ -124,7 +124,7 @@ $("#pos_to_neg").click(function(){
 $(".equals").click(function() {
     console.log(number_array);
     if (number_array[0] != "" && number_array[2] != "") {
-        for (var i = 0; i < number_array.length; i++){
+        for (var i = 0; i <= number_array.length; i++){
             //console.log(number_array[i]);
             var num1 = number_array[0];
             var operator_picked = number_array[1];
@@ -183,6 +183,7 @@ $("#clear_last").click(function(){
  * @param number2: number_array[1]
  */
 function number_math(number1, operator, number2){ //pulls in number_array[0], [1], and the operator when called
+    decimal = 0;
     console.log(number1, operator, number2);
 	number1 = parseFloat(number1); //turns number1 into a float
 	number2 = parseFloat(number2); //turns number2 into a float
@@ -208,7 +209,8 @@ function number_math(number1, operator, number2){ //pulls in number_array[0], [1
 				break; //stop the function
 			}
 			else { //if second number IS 0
-				$(".calc_screen").val("Error"); //send to the screen an error message
+				//$(".calc_screen").val("Error"); //send to the screen an error message
+                math_total = "Error";
 				break; //stop the function
 			}
 
