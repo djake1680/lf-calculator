@@ -16,18 +16,22 @@ input {
 	font-size: 2em;
 }
 
-#doublesize {
-	width: 60px;
-}
-
 .calc_screen {
     display: inline-block;
     width: 220px;
-    margin-left: 12px;
     margin-bottom: 15px;
 }
 
 .calc_body {
-    width: 260px;
+    width: 310px;
+	height: 450px;
     margin: 0 auto;
+	border: 1px solid black;
+    border-radius: 25px;
+    background-color: rgb(120,120,120);
+}
+
+.calc_area {
+    text-align: center;
+    padding-top: 30px;
 }
