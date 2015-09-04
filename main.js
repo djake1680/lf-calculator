@@ -140,6 +140,7 @@ $(".equals").click(function() {
             number_array[0] = math_total;
 
         }
+        array_number = 0;
         $(".calc_screen").val(math_total);
     }
 });
@@ -156,7 +157,7 @@ $("#clear_screen").click(function(){
 $("#clear_last").click(function(){
     num_output = "";
     number_array[array_number] = "";
-
+    console.log(number_array);
     for (var i = 0; i < number_array.length; i++) {
         num_output = num_output + number_array[i];
     }
