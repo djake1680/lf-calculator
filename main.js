@@ -52,7 +52,7 @@ $(".button_clk").click(function(){ //button_clk is the number you clicked
 
 
             array_number += 1; //changes which array index you're going to save to
-            number_array[array_number] = clicked_operator
+            number_array[array_number] = clicked_operator;
             new_number = $(".calc_screen").val();
             current_input = new_number + clicked_operator;
             $(".calc_screen").val(current_input);
@@ -124,7 +124,12 @@ $("#pos_to_neg").click(function(){
 $(".equals").click(function() {
     console.log(number_array);
     if (number_array[0] != "" && number_array[2] != "") {
-        var times_to_run = number_array.length;
+        if(number_array[number_array.length-1] == "" && number_array.length > 2){
+            console.log("last index is blank");
+            number_array.splice(number_array.length - 2, 2);
+            new_operator = 1;
+        }
+        var times_to_run = ((number_array.length / 2) - 1);
         for (var i = 0; i <= times_to_run; i++){
             //console.log(number_array[i]);
             var num1 = number_array[0];
@@ -137,19 +142,6 @@ $(".equals").click(function() {
         }
         $(".calc_screen").val(math_total);
     }
-    /*if (number_array[0] != "" && number_array[1] != "") { //this means there's a number in the first 2 index spots
-        number_math(number_array[0], clicked_operator, number_array[1]);
-        $(".calc_screen").val(math_total);
-        number_array = [math_total, ""];
-        equals_math = 1;
-        console.log("equals_math = " + equals_math);
-    }
-    else if (equals_math == 1){ // equals_math makes sure a calculation has been done, ensuring there's an operator
-        number_array[1] = number_array[0];
-        number_math(number_array[0], clicked_operator, number_array[1]);
-        number_array = [math_total, ""];
-        $(".calc_screen").val(math_total);
-    }*/
 });
 
 //to clear everything when "A/C" is clicked
