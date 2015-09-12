@@ -1,3 +1,7 @@
+body {
+	background-image: url("images/wood-background.jpg");
+}
+
 .result_display {
 	height: 60px;
 	width: 200px;
@@ -8,6 +12,8 @@
 button {
 	width: 60px;
 	height: 60px;
+	border-radius: 15px;
+	background-color: white;
 }
 
 input {
@@ -28,7 +34,10 @@ input {
     margin: 0 auto;
 	border: 1px solid black;
     border-radius: 25px;
-    background-color: rgb(120,120,120);
+    /*background-color: rgb(120,120,120);*/
+    background-image: url("images/aluminum.jpg");
+    margin-top: 10%;
+
 }
 
 .calc_area {
