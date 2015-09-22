@@ -1,3 +1,8 @@
+@font-face {
+	font-family: calculator-style;
+	src: url(fonts/digital-7.ttf);
+}
+
 body {
 	background-image: url("images/wood-background.jpg");
 }
@@ -26,6 +31,8 @@ input {
     display: inline-block;
     width: 220px;
     margin-bottom: 15px;
+    font-family: calculator-style;
+    font-size: 4em;
 }
 
 .calc_body {
